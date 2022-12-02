@@ -4,15 +4,12 @@ use std::io::{self, BufRead};
 use std::path::Path;
 
 fn main() {
-
     part_one();
     part_two();
-
 }
 
 fn part_one() {
     if let Ok(lines) = read_lines("./inputs/day2.txt") {
-
         let mut score: i64 = 0;
         for line in lines {
             if let Ok(ip) = line {
@@ -27,9 +24,15 @@ fn part_one() {
                     _ => panic!("Unexpected item"),
                 }
 
-                if (left == "A" && right == "X") || (left == "B" && right == "Y") || (left == "C" && right == "Z") {
+                if (left == "A" && right == "X")
+                    || (left == "B" && right == "Y")
+                    || (left == "C" && right == "Z")
+                {
                     score += 3;
-                } else if (left == "A" && right == "Y") || (left == "B" && right == "Z") || (left == "C" && right == "X") {
+                } else if (left == "A" && right == "Y")
+                    || (left == "B" && right == "Z")
+                    || (left == "C" && right == "X")
+                {
                     score += 6;
                 }
             }
@@ -39,10 +42,8 @@ fn part_one() {
     }
 }
 
-
 fn part_two() {
     if let Ok(lines) = read_lines("./inputs/day2.txt") {
-
         let mut score: i64 = 0;
 
         let score_mapping = HashMap::from([("A", 1), ("B", 2), ("C", 3)]);
@@ -76,7 +77,9 @@ fn part_two() {
 }
 
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<Path>, {
+where
+    P: AsRef<Path>,
+{
     let file = File::open(filename)?;
     Ok(io::BufReader::new(file).lines())
 }

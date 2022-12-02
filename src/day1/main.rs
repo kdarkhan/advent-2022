@@ -3,10 +3,8 @@ use std::io::{self, BufRead};
 use std::path::Path;
 
 fn main() {
-
     part_one();
     part_two();
-
 }
 
 fn part_one() {
@@ -36,7 +34,6 @@ fn part_one() {
     }
 }
 
-
 fn part_two() {
     if let Ok(lines) = read_lines("./inputs/day1.txt") {
         let mut vec = Vec::new();
@@ -56,12 +53,17 @@ fn part_two() {
         vec.push(cur_sum);
 
         vec.sort();
-            println!("{}", vec[vec.len() - 1] + vec[vec.len() - 2] + vec[vec.len() - 3]);
+        println!(
+            "{}",
+            vec[vec.len() - 1] + vec[vec.len() - 2] + vec[vec.len() - 3]
+        );
     }
 }
 
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<Path>, {
+where
+    P: AsRef<Path>,
+{
     let file = File::open(filename)?;
     Ok(io::BufReader::new(file).lines())
 }
