@@ -1,7 +1,5 @@
+use advent_2022::utils::read_lines;
 use std::collections::HashSet;
-use std::fs::File;
-use std::io::{self, BufRead};
-use std::path::Path;
 
 fn main() {
     part_one();
@@ -21,10 +19,13 @@ fn part_one() {
                         if set.contains(&c) {
                             set.remove(&c);
                             let ascii_code = c as u32;
-                            let priority = if ascii_code > 96 { ascii_code - 96 } else { ascii_code - 38 };
+                            let priority = if ascii_code > 96 {
+                                ascii_code - 96
+                            } else {
+                                ascii_code - 38
+                            };
                             priority_sum += priority;
                         }
-
                     }
                 }
             }
@@ -48,22 +49,17 @@ fn part_two() {
                     if idx % 3 == 2 {
                         for x in &set {
                             let ascii_code = x.to_owned() as u32;
-                            let priority = if ascii_code > 96 { ascii_code - 96 } else { ascii_code - 38 };
+                            let priority = if ascii_code > 96 {
+                                ascii_code - 96
+                            } else {
+                                ascii_code - 38
+                            };
                             priority_sum += priority;
                         }
                     }
                 }
-
             }
         }
         println!("Total sum is {}", priority_sum);
     }
-}
-
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where
-    P: AsRef<Path>,
-{
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
 }
