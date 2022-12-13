@@ -84,7 +84,7 @@ fn part_one() {
         update_parents(&cur_dir, &mut map, cnt);
 
         let mut result = 0;
-        for (key, value) in map.iter() {
+        for (_, value) in map.iter() {
             if value <= &100000 {
                 result += value;
             }
